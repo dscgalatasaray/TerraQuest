@@ -231,6 +231,7 @@ fun BooleanCevapAlani(dogruCevap: Boolean){
             //yusuf
             //deneme commiti
             //azat
+            //yeni degisiklik
         }
 
     }
