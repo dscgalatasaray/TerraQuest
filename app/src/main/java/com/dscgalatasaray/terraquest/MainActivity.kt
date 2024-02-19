@@ -228,6 +228,7 @@ fun BooleanCevapAlani(dogruCevap: Boolean){
                 }
             }) {
             Text(text = "Hayır")
+            //yusuf
             //deneme commiti
         }
 
