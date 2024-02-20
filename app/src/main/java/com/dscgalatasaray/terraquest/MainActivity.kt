@@ -77,8 +77,10 @@ fun SoruMakine(modifier: Modifier = Modifier){
     var soruListesi = mutableListOf(soru1, soru2, soru3, soru4, soru5)
 
     var i by remember{ mutableStateOf(0) }
+    var soruListesiMaxIndex = soruListesi.size-1
     var oncekiSoruAktif: Boolean = i>0
-    var sonrakiSoruAktif : Boolean = i<4
+    var sonrakiSoruAktif : Boolean = i<soruListesiMaxIndex
+    //Max index'e gore karsilastirip enable olup olmamasına karar verdim.
 
     val mevcutSoru = soruListesi[i]
 
