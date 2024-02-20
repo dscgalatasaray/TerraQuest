@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.dscgalatasaray.terraquest" />
+                  <option name="mobileSdkAppId" value="1:65929033367:android:f81433891123b1c8489bd2" />
+                  <option name="projectId" value="terraquest-69181" />
+                  <option name="projectNumber" value="65929033367" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

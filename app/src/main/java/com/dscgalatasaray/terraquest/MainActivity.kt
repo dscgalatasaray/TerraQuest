@@ -98,6 +98,7 @@ fun SoruMakine(modifier: Modifier = Modifier){
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
+
         Text(
             text = mevcutSoru.soruMetni,
             fontSize = 5.em
