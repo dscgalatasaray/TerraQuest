@@ -78,6 +78,7 @@ fun SoruMakine(modifier: Modifier = Modifier){
 
     var i by remember{ mutableStateOf(0) }
     var oncekiSoruAktif: Boolean = i>0
+    var sonrakiSoruAktif : Boolean = i<4
 
     val mevcutSoru = soruListesi[i]
 
@@ -120,7 +121,10 @@ fun SoruMakine(modifier: Modifier = Modifier){
                 Text(text = "Önceki Soru")
             }
             Spacer(modifier = Modifier.width(10.dp))
-            Button(onClick = {i++}) {
+            Button(
+                onClick = {i++},
+                enabled = sonrakiSoruAktif
+                ) {
                 Text(text = "Sonraki Soru")
             }
         }
