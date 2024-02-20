@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "65929033367",
+    "firebase_url": "https://terraquest-69181-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "terraquest-69181",
+    "storage_bucket": "terraquest-69181.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65929033367:android:f81433891123b1c8489bd2",
+        "android_client_info": {
+          "package_name": "com.dscgalatasaray.terraquest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg9O6x1ZFPhZUQQbHzSys04EHo9--NRdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
