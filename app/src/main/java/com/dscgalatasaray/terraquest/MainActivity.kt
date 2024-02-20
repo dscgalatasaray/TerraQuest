@@ -160,6 +160,7 @@ fun SoruMakine(sorular: List<Soru<*>>, modifier: Modifier = Modifier){
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
+
         Text(
             text = mevcutSoru.soruMetni,
             fontSize = 5.em
