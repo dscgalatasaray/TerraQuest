@@ -80,7 +80,7 @@ fun SoruMakine(modifier: Modifier = Modifier){
     var soruListesiMaxIndex = soruListesi.size-1
     var oncekiSoruAktif: Boolean = i>0
     var sonrakiSoruAktif : Boolean = i<soruListesiMaxIndex
-    //Max index'e gore karsilastirip enable olup olmamasına karar verdim.
+    //Max index'e gore karsilastirip enable olup olmamasına karar verdim
 
     val mevcutSoru = soruListesi[i]
 
@@ -153,9 +153,10 @@ fun StringCevapAlani(dogruCevap : String){
         Button(onClick = {
             if (cevapAlani == dogruCevap){
                 cevapAlaniRengi = Color.Green
-                Toast.makeText(context, "Cevap doğru!", Toast.LENGTH_SHORT)
+                Toast.makeText(context, "Cevap doğru!", Toast.LENGTH_SHORT).show()
             } else{
                 cevapAlaniRengi = Color.Red
+                Toast.makeText(context, "Cevap yanlış!",Toast.LENGTH_SHORT).show()
             }
         }) {
             Text(text = "Kontrol")
