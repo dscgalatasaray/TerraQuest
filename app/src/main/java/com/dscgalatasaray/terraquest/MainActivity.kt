@@ -38,6 +38,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import com.dscgalatasaray.terraquest.ui.theme.TerraQuestTheme
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 
 class MainActivity : ComponentActivity() {
@@ -114,6 +116,7 @@ enum class Zorluk{
 
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
+
 fun SoruMakinePreview() {
     val sampleSorular = listOf(
         Soru<Boolean>("Altının simgesi \"Au\" mudur?", true, Zorluk.ORTA),
@@ -126,6 +129,63 @@ fun SoruMakinePreview() {
     SoruMakine(sorular = sampleSorular)
 }
 
+val sorurand = Soru<Boolean>("bu ne ola", false, Zorluk.KOLAY)
+
+/*fun readData():MutableList<Soru<*>>{
+    lateinit var database: DatabaseReference
+    database = FirebaseDatabase.getInstance().getReference("Ecology")
+    lateinit var soru : Soru<Any>
+    var list: MutableList<Soru<*>> = mutableListOf(sorurand)
+
+
+    for (i in 1..3){
+        database.child(i.toString()).get().addOnSuccessListener {
+            var answer = it.child("answer").value
+            var question = it.child("question").value
+            var difficultyString = it.child("difficulty").value
+            lateinit var difficulty : Zorluk
+
+            when(difficultyString){
+                "basic" ->difficulty = Zorluk.KOLAY
+                "medium" ->difficulty = Zorluk.ORTA
+                "hard"   ->difficulty = Zorluk.ZOR
+                else -> difficulty = Zorluk.ORTA
+            }
+
+            println(answer)
+            if(answer is Long) {
+                answer = answer.toInt()
+                soru = Soru<Any>(soruMetni = question.toString(), cevap = answer, zorluk = difficulty)
+                list.add(soru)
+                println("bu bir sayi")
+                println(list.size)
+            }
+
+            else if(answer is String){
+                soru = Soru<Any>(soruMetni = question.toString(), cevap = answer,zorluk = difficulty)
+                list.add(soru)
+                println("bu bir string")
+                println(list.size)
+            }
+
+            else if(answer is Boolean){
+                soru = Soru<Any>(soruMetni = question.toString(), cevap = answer, zorluk = difficulty)
+                list.add(soru)
+                println("Bu bir boolean")
+                println(list.size)
+
+            }
+
+            else{
+                println("Ne oldugu belirsiz")
+            }
+        }
+
+
+
+   }
+    return list
+}*/
 @Composable
 fun SoruMakine(sorular: List<Soru<*>>, modifier: Modifier = Modifier){
 
@@ -139,6 +199,7 @@ fun SoruMakine(sorular: List<Soru<*>>, modifier: Modifier = Modifier){
     val soru5 = Soru<Int>(soruMetni = "İstanbul'da kaç belediye vardır", cevap = 40, zorluk = Zorluk.ORTA)*/
 
     //var soruListesi = mutableListOf(soru1, soru2, soru3, soru4, soru5)
+    //var deneyList = readData()
     var soruListesi = sorular
 
     var i by remember{ mutableStateOf(0) }
@@ -148,7 +209,7 @@ fun SoruMakine(sorular: List<Soru<*>>, modifier: Modifier = Modifier){
     //Max index'e gore karsilastirip enable olup olmamasına karar verdim
 
     val mevcutSoru = soruListesi[i]
-
+    //println(deneyList.get(0).soruMetni)
 
     val soruZorlugu = when(mevcutSoru.zorluk) {
         Zorluk.KOLAY -> "Kolay"
