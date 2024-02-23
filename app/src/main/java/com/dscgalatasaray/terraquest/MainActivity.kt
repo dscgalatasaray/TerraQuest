@@ -6,10 +6,13 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
@@ -155,29 +158,46 @@ fun SoruMakine(sorular: List<Soru<*>>, modifier: Modifier = Modifier){
 
     Column (
         modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween
 
     ) {
-
-        Text(
-            text = mevcutSoru.soruMetni,
-            fontSize = 5.em
-        )
-        Spacer(modifier = Modifier.height(5.dp))
-        Text(
-            text = "Zorluk: $soruZorlugu",
-            fontSize = 3.em
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        when(mevcutSoru.cevap) {
-            is Boolean -> BooleanCevapAlani(dogruCevap = mevcutSoru.cevap)
-            is Number -> IntCevapAlani(dogruCevap = mevcutSoru.cevap.toInt())
-            is String -> StringCevapAlani(dogruCevap = mevcutSoru.cevap)
-            else -> println("bilinmeyen soru tipi")
+        Row (
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Button(onClick = { /*TODO*/ }) {
+                
+            }
+            Button(onClick = { /*TODO*/ }) {
+                
+            }
         }
-        Spacer(modifier = Modifier.height(30.dp))
+
+
+        Column (
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text(
+                text = mevcutSoru.soruMetni,
+                fontSize = 5.em
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+            Text(
+                text = "Zorluk: $soruZorlugu",
+                fontSize = 3.em
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            when(mevcutSoru.cevap) {
+                is Boolean -> BooleanCevapAlani(dogruCevap = mevcutSoru.cevap)
+                is Number -> IntCevapAlani(dogruCevap = mevcutSoru.cevap.toInt())
+                is String -> StringCevapAlani(dogruCevap = mevcutSoru.cevap)
+                else -> println("bilinmeyen soru tipi")
+            }
+            Spacer(modifier = Modifier.height(30.dp))
+        }
+        
         Row {
             Button(
                 onClick = {i--},
