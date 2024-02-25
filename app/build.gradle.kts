@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.dscgalatasaray.terraquest"
-        minSdk = 24
+        minSdk = 26 // Bildirimler İçin Gerekli Değişiklik - Erman
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -63,6 +63,10 @@ dependencies {
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.google.firebase:firebase-crashlytics-buildtools:2.9.9")
     implementation("com.google.code.gson:gson:2.8.9")
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.onesignal:OneSignal:[5.0.0, 5.99.99]")
+    implementation("androidx.core:core-ktx:1.13.0-alpha05")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -71,4 +75,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("com.google.firebase:firebase-database")
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.accompanist:accompanist-permissions:0.30.1")
 }

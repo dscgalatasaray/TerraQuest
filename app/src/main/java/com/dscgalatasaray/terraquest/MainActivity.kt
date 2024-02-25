@@ -1,6 +1,7 @@
 package com.dscgalatasaray.terraquest
 
 import android.content.SharedPreferences
+import android.media.Image
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -36,12 +35,21 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
+import androidx.lifecycle.ViewModel
 import com.dscgalatasaray.terraquest.ui.theme.TerraQuestTheme
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 
+
+class NotificationServiceViewModel(
+    private val notificationService: NotificationService
+) : ViewModel() {
+
+    fun getNotificationService(): NotificationService {
+        return notificationService
+    }
+}
 class MainActivity : ComponentActivity() {
 
     private lateinit var sharedPref: SharedPreferences
@@ -52,9 +60,12 @@ class MainActivity : ComponentActivity() {
         soruKaydet()
         setContent {
             TerraQuestTheme {
+                val notificationService = NotificationService(applicationContext)
+                val viewModel = NotificationServiceViewModel(notificationService)
                 Surface(modifier = Modifier.fillMaxSize()
                 ){
-                    SoruMakine(sorular = soruAl(), modifier = Modifier
+                    SoruMakine(
+                        viewModel = viewModel, sorular = soruAl(), modifier = Modifier
                         .fillMaxSize()
                         .wrapContentSize()
                     )
@@ -126,7 +137,7 @@ fun SoruMakinePreview() {
         Soru<Int>("İstanbul'da kaç belediye vardır", 40, Zorluk.ORTA)
     )
 
-    SoruMakine(sorular = sampleSorular)
+    SoruMakine(viewModel = null, sorular = sampleSorular)
 }
 
 val sorurand = Soru<Boolean>("bu ne ola", false, Zorluk.KOLAY)
@@ -186,8 +197,10 @@ val sorurand = Soru<Boolean>("bu ne ola", false, Zorluk.KOLAY)
    }
     return list
 }*/
+
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun SoruMakine(sorular: List<Soru<*>>, modifier: Modifier = Modifier){
+fun SoruMakine(viewModel: NotificationServiceViewModel?, sorular: List<Soru<*>>, modifier: Modifier = Modifier){
 
 
 
@@ -231,7 +244,10 @@ fun SoruMakine(sorular: List<Soru<*>>, modifier: Modifier = Modifier){
             Button(onClick = { /*TODO*/ }) {
                 
             }
-            Button(onClick = { /*TODO*/ }) {
+            Button(
+                onClick = { /*TODO*/ }
+
+            ) {
                 
             }
         }
