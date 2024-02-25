@@ -1,7 +1,8 @@
 package com.dscgalatasaray.terraquest
 
+import android.Manifest
 import android.content.SharedPreferences
-import android.media.Image
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -19,6 +20,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -35,11 +37,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import com.dscgalatasaray.terraquest.ui.theme.TerraQuestTheme
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
 
 
 class NotificationServiceViewModel(
@@ -201,7 +206,7 @@ val sorurand = Soru<Boolean>("bu ne ola", false, Zorluk.KOLAY)
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun SoruMakine(viewModel: NotificationServiceViewModel?, sorular: List<Soru<*>>, modifier: Modifier = Modifier){
-
+    val notificationService = viewModel?.getNotificationService()
 
 
 
@@ -243,6 +248,16 @@ fun SoruMakine(viewModel: NotificationServiceViewModel?, sorular: List<Soru<*>>,
         ){
             Button(onClick = { /*TODO*/ }) {
                 
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                val permissionState = rememberPermissionState(
+                    permission = Manifest.permission.POST_NOTIFICATIONS
+                )
+                if (!permissionState.status.isGranted){
+                    OutlinedButton(onClick = { permissionState.launchPermissionRequest()}) {
+                        Text(text = "Bildirim İzni", fontSize = 18.sp)
+                    }
+                }
             }
             Button(
                 onClick = { /*TODO*/ }
